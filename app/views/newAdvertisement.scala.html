@@ -1,0 +1,22 @@
+@(advertisementForm: Form[forms.AdvertisementForm])
+
+@import helper._
+
+@main("New Advertisement") {
+
+	<h1>Add an Advertisement</h1>
+	
+	@form(routes.Application.saveAdvertisement(), 'enctype -> "multipart/form-data"){
+		@inputText(advertisementForm("title"), '_label -> "Title")
+		@inputText(advertisementForm("description"), '_label -> "Description")
+		@inputFile(advertisementForm("images"), '_label -> "images", 'multiple -> "multiple")
+		@textarea( advertisementForm("description"), '_label -> "description", 'row -> 3, 'col -> 30)
+		@inputText(advertisementForm("owner"), '_label -> "owner")
+		
+		
+		<div class="actions">
+	        <input type="submit" value="Add new Show Room" class="btn primary"> or 
+	        <a href="@routes.Application.index()" class="btn">Cancel</a> 
+	    </div>
+	}    
+}

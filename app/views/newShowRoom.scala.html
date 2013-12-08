@@ -1,0 +1,23 @@
+@(showRoomForm: Form[forms.ShowRoomForm])
+
+@import helper._
+
+@main("New Show Room") {
+
+	<h1>Add A Show Room</h1>
+	
+	@form(routes.Application.saveShowRoom(), 'enctype -> "multipart/form-data"){
+		@inputText(showRoomForm("name"), '_label -> "Name")
+		@inputText(showRoomForm("location"), '_label -> "Location")
+		@inputFile(showRoomForm("logo"), '_label -> "logo")
+		@inputText(showRoomForm("phone"), '_label -> "phone")
+		@inputText(showRoomForm("email"), '_label -> "email")
+		@textarea(showRoomForm("description"), '_label -> "description", 'row -> 3, 'col -> 30)
+		
+		
+		<div class="actions">
+	        <input type="submit" value="Add new Show Room" class="btn primary"> or 
+	        <a href="@routes.Application.index()" class="btn">Cancel</a> 
+	    </div>
+	}    
+}
