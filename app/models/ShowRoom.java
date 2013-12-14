@@ -34,4 +34,7 @@ public class ShowRoom extends BaseEntityAudit {
 		return toString;
 	}
 
+	public static ShowRoom findById(Long id) {
+		return find.byId(id);
+	}
 }

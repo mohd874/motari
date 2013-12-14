@@ -76,6 +76,11 @@ public class Application extends BaseController {
 		return index();
 	}
 
+	public static Result showRoomDetails(Long id){
+		ShowRoom room = ShowRoom.findById(id);
+		return ok(views.html.showRoom.render("", room));
+	}
+	
 	private static String saveAdvertisementFile(Advertisement adv, FilePart part) {
 		String newFilename = generateFileName(part.getFilename());
 		adv.addImageString(newFilename);
@@ -83,7 +88,7 @@ public class Application extends BaseController {
 		FileUtil.copyFile(part.getFile(), new File(uploadDir));
 		return newFilename;
 	}
-
+	
 	private static String generateShowRoomUploadDirString(Long id, String fileName) {
 		return getApplicationString("file.upload.cars.dir") + "/" + id + "/" + fileName;
 	}
