@@ -1,5 +1,6 @@
 package controllers;
 
+import play.Logger;
 import play.mvc.*;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.data.*;
@@ -17,7 +18,7 @@ public class Application extends BaseController {
 	public static Result index() {
 		List<ShowRoom> rooms = ShowRoom.find.all();
 		
-		return ok(index.render("Your new application is ready.", rooms));
+		return ok(index.render("Your new application is ready.", rooms, Advertisement.find.all()));
 	}
 
 	public static Result newShowRoom() {
@@ -38,7 +39,7 @@ public class Application extends BaseController {
 		
 		room.logo = generateFileName(logoImage.getFilename());
 		room.save();
-		String uploadDir = generateUploadDirString(room.id, room.logo);
+		String uploadDir = generateShowRoomUploadDirString(room.id, room.logo);
 		FileUtil.copyFile(logoImage.getFile(), new File(uploadDir));
 		flash("success", "Show Room "+showRoomForm.get().name+" has been created");
 		return index();
@@ -47,7 +48,7 @@ public class Application extends BaseController {
 	public static Result newAdvertisement(){
 		Form<forms.AdvertisementForm> advForm = form(forms.AdvertisementForm.class);
 		return ok(
-				newAdvertisement.render(advForm)
+				newAdvertisement.render(advForm, ShowRoom.find.all())
 		);
 	}
 	
@@ -55,20 +56,40 @@ public class Application extends BaseController {
 		Form<forms.AdvertisementForm> advForm = form(forms.AdvertisementForm.class).bindFromRequest();
 		Advertisement adv = advForm.get().bind(new Advertisement());
 		List<FilePart> images = getFilePartUploads();
+		FilePart thumbnailFilePart = getFilePartUploadByString("thumbnail");
 		
 		if(advForm.hasErrors()){
-			return badRequest(newAdvertisement.render(advForm));
+			return badRequest(newAdvertisement.render(advForm, ShowRoom.find.all()));
 		}
 		
-		System.out.println(adv);
+		adv.save();//for the new id
+		adv.thumbnail = saveAdvertisementFile(adv, thumbnailFilePart);
+		Logger.info("adv.thumbnail: " + adv.thumbnail);
+		
 		for(FilePart part : images){
-			System.out.println("filename: "+ part.getFilename());
+			saveAdvertisementFile(adv, part);
 		}
-		return TODO;
+		adv.save();
+		
+		Logger.info(adv.toString());
+		
+		return index();
 	}
 
-	private static String generateUploadDirString(Long id, String fileName) {
-		return getApplicationString("file.upload.dir") + "/" + id + "/" + fileName;
+	private static String saveAdvertisementFile(Advertisement adv, FilePart part) {
+		String newFilename = generateFileName(part.getFilename());
+		adv.addImageString(newFilename);
+		String uploadDir = generateAdvertisementUploadDirString(adv.id, newFilename);
+		FileUtil.copyFile(part.getFile(), new File(uploadDir));
+		return newFilename;
+	}
+
+	private static String generateShowRoomUploadDirString(Long id, String fileName) {
+		return getApplicationString("file.upload.cars.dir") + "/" + id + "/" + fileName;
+	}
+	
+	private static String generateAdvertisementUploadDirString(Long id, String fileName) {
+		return getApplicationString("file.upload.advs.dir") + "/" + id + "/" + fileName;
 	}
 	
 	private static String generateFileName(String fileName) {

@@ -1,4 +1,4 @@
-@(advertisementForm: Form[forms.AdvertisementForm])
+@(advertisementForm: Form[forms.AdvertisementForm], showRooms: List[ShowRoom])
 
 @import helper._
 
@@ -8,11 +8,23 @@
 	
 	@form(routes.Application.saveAdvertisement(), 'enctype -> "multipart/form-data"){
 		@inputText(advertisementForm("title"), '_label -> "Title")
-		@inputText(advertisementForm("description"), '_label -> "Description")
+		@textarea( advertisementForm("description"), '_label -> "Description", 'row -> 3, 'col -> 30)
+		@inputFile(advertisementForm("thumbnail"), '_label -> "Thumbnail")
 		@inputFile(advertisementForm("images"), '_label -> "images", 'multiple -> "multiple")
-		@textarea( advertisementForm("description"), '_label -> "description", 'row -> 3, 'col -> 30)
-		@inputText(advertisementForm("owner"), '_label -> "owner")
-		
+		<dl class=" " id="owner_field">
+		    <dt>
+		    	<label for="owner">owner</label>
+		    </dt>
+		    <dd>
+		    	<select id="owner" name="owner">
+		    		@showRooms.map { room => 
+		    			<option value="@room.id">
+		    				@room.name
+		    			</option>
+		    		}
+		    	</select> 
+			</dd>
+		</dl>
 		
 		<div class="actions">
 	        <input type="submit" value="Add new Show Room" class="btn primary"> or 

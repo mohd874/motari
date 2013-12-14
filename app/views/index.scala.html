@@ -1,4 +1,4 @@
-@(message: String, rooms: List[ShowRoom])
+@(message: String, rooms: List[ShowRoom], advs: List[Advertisement])
 
 @main("Welcome to Play") {
 	
@@ -91,7 +91,7 @@
 	<div id="content">
 		    <div>
 			<div class="first">
-				<h2>Hot Deals</h2>
+				<h2>New Deals</h2>
 				<ul>
 					<li>
 						<a href="deals.html"><img src="@routes.Assets.at("images/riverside-city.jpg")" alt=""/></a>
@@ -100,27 +100,12 @@
 						<a href="deals.html" class="details">See Details</a>
 						<a href="deals.html" class="book">Book Now!</a>
 					</li>
-					<li>
-						<a href="deals.html"><img src="@routes.Assets.at("images/kayaks.jpg")" alt=""/></a>
-						<span><a href="deals.html">Pellentesque</a></span>
-						<p>Maecenas gravida lacus mauris, at interdum ligula</p>
-						<a href="deals.html" class="details">See Details</a>							
-						<a href="deals.html" class="book">Book Now!</a>
-					</li>
-					<li>
-						<a href="deals.html"><img src="@routes.Assets.at("images/castle.jpg")" alt=""/></a>
-						<span><a href="deals.html">QUISQUE</a></span>
-						<p>Pellentesque molestie arcu vitae lectus</p>
-						<a href="deals.html" class="details">See Details</a>							
-						<a href="deals.html" class="book">Book Now!</a>
-					</li>
-					<li>
-						<a href="deals.html"><img src="@routes.Assets.at("images/girl-swimming.jpg")" alt=""/></a>
-						<span><a href="deals.html">ODIOLOREM</a></span>
-						<p>Nullam viverra nisi et elit pretium venenatis</p>
-						<a href="deals.html" class="details">See Details</a>							
-						<a href="deals.html" class="book">Book Now!</a>
-					</li>
+					@advs.map {ad => 
+						<li>
+							@ad.title
+							<img src="@routes.Assets.at("images/advertisements/"+ad.id+"/"+ad.thumbnail)" alt="@ad.title" />
+						</li>
+					}
 				</ul>
 				<a href="deals.html">View all</a>
 			</div>
