@@ -1,52 +1,33 @@
-@(message: String, room: ShowRoom)
+@(message: String, room: ShowRoom) @main(room.name + " Details") {
 
-@main(room.name + " Details") {
+<h2>@room.name Details</h2>
 
-		<div class="header">
-			<ul id="navigation">
-				<li>
-					<a href="index.html" id="home">Home</a>
-				</li>
-				<li>
-					<a href="#" id="email">Email</a>
-				</li>
-			</ul>
-			<p>Talk to a travel professional <span>1-999-666-888</span></p>
-			<a href="index.html" id="logo"><img src="images/logo.jpg" alt="logo"/></a>
-			<ul class="navigation">
-				<li class="first">
-					<a href="destinations.html">Cruises &amp; Destinations</a>
-				</li>
-				<li>
-					<a href="ships.html">Ships &amp; Activities</a>
-				</li>
-				<li class="selected">
-					<a href="cruises.html">Prepare for your Cruises</a>
-				</li>
-			</ul>
-		</div> 
-		<div class="content">
-			<div id="cruises">
-				<h2>@room.name Details</h2>
-				
-				<ul>
-					<li>
-						<p><a href="#">Location: </a> @room.location</p>						
-					</li>
-					<li>
-						<p><a href="#">Logo: </a> <img style="width: 70px;" src="@routes.Assets.at("images/cars/"+room.id+"/"+room.logo)" alt="@room.name" /></p>						
-					</li>
-					<li>
-						<p><a href="#">Phone: </a> @room.phone</p>						
-					</li>
-					<li>
-						<p><a href="#">Description: </a> @room.description</p>						
-					</li>
-					<li>
-						<p><a href="#">Email: </a> @room.email</p>						
-					</li>
-					
-				</lu>
-			</div>
-		</div>
+<ul>
+	<li>
+		<p>
+			Location:  @room.location
+		</p>
+	</li>
+	<li>
+		<p>
+			Logo:  <img style="width: 70px;"
+				src="@routes.Assets.at("images/cars/"+room.id+"/"+room.logo)" alt="@room.name" />
+		</p>
+	</li>
+	<li>
+		<p>
+			Phone:  @room.phone
+		</p>
+	</li>
+	<li>
+		<p>
+			Description:  @room.description
+		</p>
+	</li>
+	<li>
+		<p>
+			Email:  @room.email
+		</p>
+	</li>
+</lu>
 }

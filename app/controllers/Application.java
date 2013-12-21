@@ -80,6 +80,16 @@ public class Application extends BaseController {
 		ShowRoom room = ShowRoom.findById(id);
 		return ok(views.html.showRoom.render("", room));
 	}
+
+	public static Result advertisementDetails(Long id){
+		Advertisement adv = Advertisement.findById(id);
+		return todo();
+//		return ok(views.html.advertisementDetails("", adv));
+	}
+	
+	public static Result todo(){
+		return TODO;
+	}
 	
 	private static String saveAdvertisementFile(Advertisement adv, FilePart part) {
 		String newFilename = generateFileName(part.getFilename());

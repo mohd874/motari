@@ -1,141 +1,31 @@
 @(message: String, rooms: List[ShowRoom], advs: List[Advertisement])
 
 @main("Welcome to Play") {
-	
-	<div id="header">
-		<ul id="navigation">
-			<li>
-				<a href="index.html" id="home">Home</a>
-			</li>
-			<li>
-				<a href="#" id="email">Email</a>
-			</li>
-		</ul>
-		<p>Talk to a travel professional <span>1-999-666-888</span></p>
-		<a href="index.html" id="logo"><img src="@routes.Assets.at("images/logo.jpg")" alt="logo"/></a>
-		<ul class="navigation">
-			<li class="selected first">
-				<a href="destinations.html">Cruises &amp; Destinations</a>
-			</li>
-			<li>
-				<a href="ships.html">Ships &amp; Activities</a>
-			</li>
-			<li>
-				<a href="cruises.html">Prepare for your Cruises</a>
-			</li>
-		</ul>
-		<div id="featured">
-			<div class="first">
-				<ul>
-					<li class="selected first">
-						<a href="featured.html">Featured Destinations</a>
-						<div>
-							<a href="featured.html"><img src="@routes.Assets.at("images/couples.jpg")" alt=""/></a>
-							<p>This website template has been designed by <a href="http://www.freewebsitetemplates.com/">Free Website Templates</a> for you, for free. You can replace all this text with your own text.</p>
-						</div>
-					</li>
-					<li>
-						<a href="deals.html">Hot Deals</a>
-						<div>
-							<a href="deals.html"><img src="@routes.Assets.at("images/riverside.jpg")" alt=""/></a>
-							<p>You can remove any link to our website from this website template, you're free to use this website template without linking back to us.</p>
-						</div>
-					</li>
-					<li>
-						<a href="offers.html">Special Offers</a>
-						<div>
-							<a href="offers.html"><img src="@routes.Assets.at("images/mountains.jpg")" alt=""/></a>
-							<p>If you're having problems editing this website template, then don't hesitate to ask for help on the <a href="http://www.freewebsitetemplates.com/forum/">Forum</a>.</p>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div>
-				<h3>Find A Cruise</h3>
-				<form action="">
-					<select name="" id="">
-						<option value="month">Any Month</option>
-					</select>
-					<select name="" id="">
-						<option value="destinations">Any Destinations</option>
-					</select>
-					<select name="" id="">
-						<option value="ship">Any Ship</option>
-					</select>
-					<select name="" id="">
-						<option value="port">Any Departure Port</option>
-					</select>
-					<input type="submit" value=""/>
-				</form>
-				<div>
-					<h3>Already Booked?</h3>
-					<ul>
-						<li>
-							<a href="excursions.html">Check out our Excursions</a>
-							<p>You can remove any link to our website from this website template.</p>
-						</li>
-						<li>
-							<a href="restaurant.html">Check out our Specialty Restaurant</a>
-							<p>You're free to use this website template without linking back to us.</p>
-						</li>
-						<li>
-							<a href="activities.html">Check out our Special Activities</a>
-							<p>Please don't hesitate to ask for help on the <a href="http://www.freewebsitetemplates.com/forum/">Forum</a>.</p>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div> 
+	<div>
+		<h2>Recent Advertisements</h2>
 		
-	<div id="content">
-		    <div>
-			<div class="first">
-				<h2>New Deals</h2>
-				<ul>
-					<li>
-						<a href="deals.html"><img src="@routes.Assets.at("images/riverside-city.jpg")" alt=""/></a>
-						<span><a href="deals.html">Donec Nisl Justo</a></span>
-						<p>7 Days &amp; 3 Days at Aliquam iaculis velit</p>
-						<a href="deals.html" class="details">See Details</a>
-						<a href="deals.html" class="book">Book Now!</a>
-					</li>
-					@advs.map {ad => 
-						<li>
-							@ad.title
-							<img src="@routes.Assets.at("images/advertisements/"+ad.id+"/"+ad.thumbnail)" alt="@ad.title" />
-						</li>
-					}
-				</ul>
-				<a href="deals.html">View all</a>
-			</div>
-			<div>
-				<h2>Show Rooms</h2>
-				
-				<ul>
-				@rooms.map { r => 
-					<li>
-						<a href="#">@r.name</a><img src="@routes.Assets.at("images/cars/"+r.id+"/"+r.logo)" alt="@r.name" />
-					</li>
-				}	
-				</ul>
-				<a href="offers.html">View all</a>
-			</div>
-			<div id="news">
-				<h2>Get Updated</h2>
-				<a href="http://twitter.com/fwtemplates">Follow us <font>Twitter</font></a>
-				<a href="http://facebook.com/freewebsitetemplates">Like us in <font>Facebook</font></a>
-				<a href="#">Visit our <font>Blog</font></a>
-				<a href="http://www.youtube.com/fwtemplates">Watch us in <font>YouTube</font></a>
-				
-				<div>
-					<h3>Brochure</h3>
-					<a href="#" id="download"><img src="@routes.Assets.at("images/brochure.jpg")" alt=""/></a>
-					<a href="#">Download Brochure</a>
-					<p>This website template has been designed by <a href="http://www.freewebsitetemplates.com/">Free Website Templates</a> for you, for free. You can replace all this text with your own text.</p>
-				</div>
-			</div>	
-		</div>
-		</div>
+		<ul>
+			@advs.map {ad => 
+				<li>
+					@ad.title
+					<img style="width:70px" src="@routes.Assets.at("images/advertisements/"+ad.id+"/"+ad.thumbnail)" alt="@ad.title" />
+				</li>
+			}
+		</ul>
+		<a href="@routes.Application.todo">View all</a>
+	</div>
+	</br>
+	<hr>
+	<div>
+		<h2>Show Rooms</h2>
+		
+		<ul>
+		@rooms.map { r => 
+			<li>
+				<a href="@routes.Application.showRoomDetails(r.id)">@r.name</a><img style="width:70px" src="@routes.Assets.at("images/cars/"+r.id+"/"+r.logo)" alt="@r.name" />
+			</li>
+		}	
+		</ul>
+		<a href="@routes.Application.todo">View all</a>
 	</div>
 }

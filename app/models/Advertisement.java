@@ -45,4 +45,8 @@ public class Advertisement extends BaseEntityAudit {
 				toString += "]";
 		return toString;
 	}
+
+	public static Advertisement findById(Long id) {
+		return find.byId(id);
+	}
 }
