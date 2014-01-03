@@ -1,0 +1,27 @@
+@(message: String, adv: Advertisement)
+
+@main(adv.title + " Details"){
+<h2>@adv.title Details</h2>
+
+<ul>
+	<li>
+		<p>
+			Descrition:  @adv.description
+		</p>
+	</li>
+	<li>
+		<p>
+			Images: <br/>  
+			@adv.images.split(",").zipWithIndex.map {case (img, i) =>
+				<img style="width: 70px;"src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" alt="@img" />
+				
+				@if((1+i) % 3 == 0){</br>}
+			}
+			
+			
+		</p>
+	</li>
+	
+</lu>
+}
+

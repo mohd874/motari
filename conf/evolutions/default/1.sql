@@ -12,6 +12,7 @@ create table advertisement (
   title                     varchar(255),
   description               varchar(255),
   thumbnail                 varchar(255),
+  images                    varchar(255),
   version                   bigint not null,
   constraint pk_advertisement primary key (id))
 ;

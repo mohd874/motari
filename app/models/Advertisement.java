@@ -3,31 +3,38 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import play.db.ebean.Model.Finder;
 
 @Entity
 @Table(name = "advertisement")
 public class Advertisement extends BaseEntityAudit {
 
+	private static final long serialVersionUID = 3323282328164482932L;
+
 	public String title;
 	public String description;
 	public String thumbnail;
-	public List<String> images;
+	public String images;
 	public ShowRoom owner;
 
-	public Advertisement() {}
-	
 	public static Finder<Long, Advertisement> find = new Finder<Long, Advertisement>(Long.class, Advertisement.class);
-	
-	public void addImageString(String img){
+
+	public void addImage(String img){
 		if(images == null){
-			images = new ArrayList<String>();
+			images = "";
 		}
-		
-		images.add(img);
+		if(images.length() > 0){
+			images += ",";
+		}
+		images += img; 
+	}
+	
+	public String[] getImagesAsStringArray(){
+		return images.split(",");
 	}
 	
 	@Override
@@ -37,16 +44,12 @@ public class Advertisement extends BaseEntityAudit {
 				+ " [description=" + description + "]"
 				+ " [thumbnail=" + thumbnail + "]"
 				+ " [owner=" + owner.name + "]"
-				+ " [Images= Size: "+images.size()+" ";
-				
-				for(String s : images)
-					toString += "["+s+"]";
-
-				toString += "]";
+				+ " [Images= Size: "+images+"]";
 		return toString;
 	}
 
 	public static Advertisement findById(Long id) {
 		return find.byId(id);
 	}
+
 }

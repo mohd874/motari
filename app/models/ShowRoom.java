@@ -1,10 +1,10 @@
 package models;
 
-import play.db.ebean.*;
-
-import java.util.*;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "show_room")
@@ -12,6 +12,8 @@ public class ShowRoom extends BaseEntityAudit {
 
 	public String name;
 	public String location;
+//	@OneToMany(fetch=FetchType.EAGER,mappedBy="showRoom", cascade=CascadeType.ALL)
+//	public Image logo;
 	public String logo;
 	public String phone;
 	public String email;

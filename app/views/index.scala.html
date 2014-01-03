@@ -7,7 +7,7 @@
 		<ul>
 			@advs.map {ad => 
 				<li>
-					@ad.title
+					<a href="@routes.Application.advertisementDetails(ad.id)">@ad.title</a>
 					<img style="width:70px" src="@routes.Assets.at("images/advertisements/"+ad.id+"/"+ad.thumbnail)" alt="@ad.title" />
 				</li>
 			}

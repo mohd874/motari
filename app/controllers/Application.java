@@ -17,8 +17,8 @@ public class Application extends BaseController {
 
 	public static Result index() {
 		List<ShowRoom> rooms = ShowRoom.find.all();
-		
-		return ok(index.render("Your new application is ready.", rooms, Advertisement.find.all()));
+		List<Advertisement> advs = Advertisement.find.all();
+		return ok(index.render("Your new application is ready.", rooms, advs));
 	}
 
 	public static Result newShowRoom() {
@@ -39,6 +39,7 @@ public class Application extends BaseController {
 		
 		room.logo = generateFileName(logoImage.getFilename());
 		room.save();
+		
 		String uploadDir = generateShowRoomUploadDirString(room.id, room.logo);
 		FileUtil.copyFile(logoImage.getFile(), new File(uploadDir));
 		flash("success", "Show Room "+showRoomForm.get().name+" has been created");
@@ -64,15 +65,14 @@ public class Application extends BaseController {
 		
 		adv.save();//for the new id
 		adv.thumbnail = saveAdvertisementFile(adv, thumbnailFilePart);
-		Logger.info("adv.thumbnail: " + adv.thumbnail);
 		
 		for(FilePart part : images){
-			saveAdvertisementFile(adv, part);
+			if(part != thumbnailFilePart){
+				saveAdvertisementFile(adv, part);
+			}
 		}
 		adv.save();
-		
-		Logger.info(adv.toString());
-		
+				
 		return index();
 	}
 
@@ -83,8 +83,11 @@ public class Application extends BaseController {
 
 	public static Result advertisementDetails(Long id){
 		Advertisement adv = Advertisement.findById(id);
-		return todo();
-//		return ok(views.html.advertisementDetails("", adv));
+		
+//		Logger.info(adv.thumbnail.toString());
+//		Logger.info(adv.toString());
+//		return todo();
+		return ok(views.html.advertisement.render("", adv));
 	}
 	
 	public static Result todo(){
@@ -93,7 +96,7 @@ public class Application extends BaseController {
 	
 	private static String saveAdvertisementFile(Advertisement adv, FilePart part) {
 		String newFilename = generateFileName(part.getFilename());
-		adv.addImageString(newFilename);
+		adv.addImage(newFilename);
 		String uploadDir = generateAdvertisementUploadDirString(adv.id, newFilename);
 		FileUtil.copyFile(part.getFile(), new File(uploadDir));
 		return newFilename;
