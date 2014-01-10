@@ -52,4 +52,13 @@ public class Advertisement extends BaseEntityAudit {
 		return find.byId(id);
 	}
 
+	public static List<Advertisement> findWhereTitleLike(String title) {
+		if(null == title || title.trim() == "")
+			return find.all();
+		else
+			return find.where()
+			.ilike("title", "%"+title+"%")
+			.findList();
+	}
+
 }

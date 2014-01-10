@@ -1,0 +1,8 @@
+@(message: String, advs: List[Advertisement])
+<ul>
+	@advs.map{ a =>
+		<li>
+			@a.title
+		</li>
+	}
+</ul>

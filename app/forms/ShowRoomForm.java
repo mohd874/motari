@@ -1,6 +1,5 @@
 package forms;
 
-import models.Image;
 import models.ShowRoom;
 
 public class ShowRoomForm {

@@ -14,8 +14,13 @@ POST   	/advertisement/saveNew      controllers.Application.saveAdvertisement()
 GET		/showRoom/:id				controllers.Application.showRoomDetails(id: Long)
 GET		/advertisement/:id			controllers.Application.advertisementDetails(id: Long)
 
+POST	/find/showRoom/:query		controllers.Application.searchShowRoom(query: String)
+POST	/find/advertisement/:query	controllers.Application.searchAdvertisement(query: String)
 
-#For unimplemented pages
+# javascript routes
+GET     /javascriptRoutes    		 controllers.Application.javascriptRoutes()
+
+# For unimplemented pages
 GET		/TODO						controllers.Application.todo()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

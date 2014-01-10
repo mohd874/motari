@@ -1,9 +1,8 @@
 package models;
 
-import javax.persistence.CascadeType;
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,8 +11,6 @@ public class ShowRoom extends BaseEntityAudit {
 
 	public String name;
 	public String location;
-//	@OneToMany(fetch=FetchType.EAGER,mappedBy="showRoom", cascade=CascadeType.ALL)
-//	public Image logo;
 	public String logo;
 	public String phone;
 	public String email;
@@ -38,5 +35,14 @@ public class ShowRoom extends BaseEntityAudit {
 
 	public static ShowRoom findById(Long id) {
 		return find.byId(id);
+	}
+	
+	public static List<ShowRoom> findWhereNameLike(String name){
+		if(null == name || name.trim() == "")
+			return find.all();
+		else
+			return find.where()
+			.ilike("name", "%"+name+"%")
+			.findList();
 	}
 }

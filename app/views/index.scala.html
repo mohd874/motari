@@ -2,6 +2,44 @@
 
 @main("Welcome to Play") {
 	<div>
+		<input type="text" id="search" class="search"/> <input type="button" id="searchBtn" value="Search" />
+		<script>
+			$('#searchBtn').click(function(e) {
+			    var searchQuery = $("#search").val();
+			    myJsRoutes.controllers.Application.searchShowRoom(searchQuery).ajax({
+					success: function(data){
+						$('.showRoomResults').html(data)
+					}
+				})
+			    myJsRoutes.controllers.Application.searchAdvertisement(searchQuery).ajax({
+					success: function(data){
+						$('.advertisementResults').html(data)
+					}
+				})
+			    return false;
+			});
+		</script>
+		<div class="searchResult">
+			<table>
+				<tr>
+					<th colspan="2">Results</th>
+				</tr>
+				<tr>
+					<th>Advertisements</th>
+					<th>Show Rooms</th>
+				</tr>
+				<tr>
+					<td class="advertisementResults">
+						
+					</td>
+					<td class="showRoomResults">
+					
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div>
 		<h2>Recent Advertisements</h2>
 		
 		<ul>

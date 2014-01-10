@@ -3,6 +3,7 @@ package controllers;
 import play.Logger;
 import play.mvc.*;
 import play.mvc.Http.MultipartFormData.FilePart;
+import play.Routes;
 import play.data.*;
 import static play.data.Form.*;
 import utils.FileUtil;
@@ -94,6 +95,29 @@ public class Application extends BaseController {
 		return TODO;
 	}
 	
+	public static Result searchShowRoom(String query){
+		return ok(views.html.searchShowRoom.render("",ShowRoom.findWhereNameLike(query)));
+	}
+
+	public static Result searchAdvertisement(String query){
+		return ok(views.html.searchAdvertisement.render("",Advertisement.findWhereTitleLike(query)));
+	}
+	
+	// javascript routes
+	public static Result javascriptRoutes() {
+	    response().setContentType("text/javascript");
+	    return ok(
+	    		Routes.javascriptRouter("myJsRoutes",
+	            routes.javascript.Application.advertisementDetails(),
+	            routes.javascript.Application.showRoomDetails(),
+	            routes.javascript.Application.searchShowRoom(),
+	            routes.javascript.Application.searchAdvertisement()
+	        )
+	    );
+	}
+	
+	
+	// private methods
 	private static String saveAdvertisementFile(Advertisement adv, FilePart part) {
 		String newFilename = generateFileName(part.getFilename());
 		adv.addImage(newFilename);
