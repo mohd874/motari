@@ -1,16 +1,12 @@
-package models;
+package ae.motari.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "advertisement")
+@Table(name = "ADVERTISEMENT")
 public class Advertisement extends BaseEntityAudit {
 
 	private static final long serialVersionUID = 3323282328164482932L;
@@ -20,6 +16,13 @@ public class Advertisement extends BaseEntityAudit {
 	public String thumbnail;
 	public String images;
 	public ShowRoom owner;
+	
+	public int price;
+	public int countViews;
+	public String manufacturer;
+	public String model;
+	public int yearMade;
+	public CarType type;
 
 	public static Finder<Long, Advertisement> find = new Finder<Long, Advertisement>(Long.class, Advertisement.class);
 
@@ -42,9 +45,7 @@ public class Advertisement extends BaseEntityAudit {
 		String toString = super.toString()
 				+ " [title=" + title + "]"
 				+ " [description=" + description + "]"
-				+ " [thumbnail=" + thumbnail + "]"
-				+ " [owner=" + owner.name + "]"
-				+ " [Images= Size: "+images+"]";
+				+ " [owner=" + owner.name + "]";
 		return toString;
 	}
 

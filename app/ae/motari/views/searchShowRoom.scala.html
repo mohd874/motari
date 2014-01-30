@@ -1,0 +1,8 @@
+@(message: String, rooms: List[ae.motari.models.ShowRoom])
+<ul>
+	@rooms.map{ r =>
+		<li>
+			@r.name
+		</li>
+	}
+</ul>

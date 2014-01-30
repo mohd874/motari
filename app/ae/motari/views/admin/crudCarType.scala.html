@@ -1,0 +1,104 @@
+@(msg: String, types: List[ae.motari.models.CarType])
+
+@import ae.motari.controllers.admin._
+@import ae.motari.views.html._
+
+@main("CRUD CarTypes") {
+
+	<form action="@routes.Admin.saveCarType()" method="POST">
+		<label for="name">Car Type Name: </label><input type="text" name="name" id="name" /> 
+		<input type="submit" value="Save" />		
+	</form>
+
+	<p>
+		Types Found: @types.size 
+	</p>
+	<table>
+		<tr>
+			<th>
+				id
+			</th>
+			<th>
+				name
+			</th>
+			<th>
+				created_at
+			</th>
+			<th>
+				created_by
+
+			</th>
+			<th>
+				updated_at
+			</th>
+			<th>
+				updated_by
+			</th>
+			<th>
+				version
+			</th>
+			<th>
+				Edit
+			</th>
+			<th>
+				Delete
+			</th>
+		</tr>
+		@types.map{ t => 
+			<tr>
+				<td>
+					@t.id	
+				</td>			
+				<td>
+					<p class="view@t.id">
+						@t.name
+					</p>
+					<div class="edit edit@t.id">
+						<form action="@routes.Admin.updateCarType()" method="POST" name="editForm@t.id" id="editForm@t.id">
+							<input type="hidden" name="id" id="id" value="@t.id" />
+							<input type="text" name="name" id="name" value="@t.name" />
+						</form>
+					</div>
+				</td>			
+				<td>
+					@t.createdAt	
+				</td>			
+				<td>
+					@t.createdBy	
+				</td>			
+				<td>
+					@t.updatedAt	
+				</td>			
+				<td>
+					@t.updatedBy
+				</td>			
+				<td>
+					@t.version	
+				</td>
+				<td>
+					<div class="view@t.id">
+						<a href="#" onclick="toggleEdit(@t.id)">Edit</a>
+					</div>
+					<div class="edit edit@t.id">
+						<input type="button" value="Save" onclick="$('#editForm@t.id').submit()" />
+						<input type="button" value="cancel" onclick="toggleEdit(@t.id)" />
+					</div>
+				</td>
+				<td>
+					<a href="@routes.Admin.deleteCarType(t.id)">Delete</a>	
+				</td>
+			</tr>
+		}
+	</table>
+	<script>
+		function toggleEdit(id){
+			if($('.edit'+id).is(':visible')){
+				$('.edit'+id).hide()
+				$('.view'+id).show()
+			}else{
+				$('.edit'+id).show()
+				$('.view'+id).hide()
+			}
+		}
+	</script>
+}

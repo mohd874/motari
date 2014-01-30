@@ -1,18 +1,25 @@
-package controllers;
+package ae.motari.controllers;
 
-import play.Logger;
-import play.mvc.*;
-import play.mvc.Http.MultipartFormData.FilePart;
-import play.Routes;
-import play.data.*;
-import static play.data.Form.*;
-import utils.FileUtil;
-import views.html.*;
+import static play.data.Form.form;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import models.*;
+import play.Logger;
+import play.Routes;
+import play.data.Form;
+import play.mvc.Http.MultipartFormData.FilePart;
+import play.mvc.Result;
+import ae.motari.dataView.AdvertisementTagCreator;
+import ae.motari.dataView.Tag;
+import ae.motari.forms.AdvertisementForm;
+import ae.motari.forms.ShowRoomForm;
+import ae.motari.models.Advertisement;
+import ae.motari.models.CarType;
+import ae.motari.models.ShowRoom;
+import ae.motari.utils.FileUtil;
+import ae.motari.views.html.*;
 
 public class Application extends BaseController {
 
@@ -23,14 +30,14 @@ public class Application extends BaseController {
 	}
 
 	public static Result newShowRoom() {
-		Form<forms.ShowRoomForm> showRoomForm = form(forms.ShowRoomForm.class);
+		Form<ShowRoomForm> showRoomForm = form(ShowRoomForm.class);
 		return ok(
 				newShowRoom.render(showRoomForm)
 		);
 	}
 	
 	public static Result saveShowRoom(){
-		Form<forms.ShowRoomForm> showRoomForm = form(forms.ShowRoomForm.class).bindFromRequest();
+		Form<ShowRoomForm> showRoomForm = form(ShowRoomForm.class).bindFromRequest();
 		ShowRoom room = showRoomForm.get().bind(new ShowRoom());
 		FilePart logoImage = getFilePartUploadByString("logo");
 		
@@ -48,20 +55,20 @@ public class Application extends BaseController {
 	}
 	
 	public static Result newAdvertisement(){
-		Form<forms.AdvertisementForm> advForm = form(forms.AdvertisementForm.class);
+		Form<AdvertisementForm> advForm = form(AdvertisementForm.class);
 		return ok(
-				newAdvertisement.render(advForm, ShowRoom.find.all())
+				newAdvertisement.render(advForm, ShowRoom.find.all(), CarType.find.all())
 		);
 	}
 	
 	public static Result saveAdvertisement(){
-		Form<forms.AdvertisementForm> advForm = form(forms.AdvertisementForm.class).bindFromRequest();
+		Form<AdvertisementForm> advForm = form(AdvertisementForm.class).bindFromRequest();
 		Advertisement adv = advForm.get().bind(new Advertisement());
 		List<FilePart> images = getFilePartUploads();
 		FilePart thumbnailFilePart = getFilePartUploadByString("thumbnail");
 		
 		if(advForm.hasErrors()){
-			return badRequest(newAdvertisement.render(advForm, ShowRoom.find.all()));
+			return badRequest(newAdvertisement.render(advForm, ShowRoom.find.all(), CarType.find.all()));
 		}
 		
 		adv.save();//for the new id
@@ -79,16 +86,12 @@ public class Application extends BaseController {
 
 	public static Result showRoomDetails(Long id){
 		ShowRoom room = ShowRoom.findById(id);
-		return ok(views.html.showRoom.render("", room));
+		return ok(showRoom.render("", room));
 	}
 
 	public static Result advertisementDetails(Long id){
 		Advertisement adv = Advertisement.findById(id);
-		
-//		Logger.info(adv.thumbnail.toString());
-//		Logger.info(adv.toString());
-//		return todo();
-		return ok(views.html.advertisement.render("", adv));
+		return ok(advertisement.render("", adv));
 	}
 	
 	public static Result todo(){
@@ -96,11 +99,28 @@ public class Application extends BaseController {
 	}
 	
 	public static Result searchShowRoom(String query){
-		return ok(views.html.searchShowRoom.render("",ShowRoom.findWhereNameLike(query)));
+		return ok(searchShowRoom.render("",ShowRoom.findWhereNameLike(query)));
 	}
 
 	public static Result searchAdvertisement(String query){
-		return ok(views.html.searchAdvertisement.render("",Advertisement.findWhereTitleLike(query)));
+		return ok(searchAdvertisement.render("",Advertisement.findWhereTitleLike(query)));
+	}
+
+	public static Result getInfoTagForAdvetisement(Advertisement adv){
+		return ok(tag.render("",AdvertisementTagCreator.generateAdvertisementTag(adv)));
+	}
+	
+	public static Result gallery(String type){
+		List<Tag> tags = new ArrayList<Tag>();
+		List<Advertisement> advs = Advertisement.find.all();
+		Logger.info("advs: " + advs.size());
+		if("adv".equals(type)){
+			for(Advertisement adv : advs){
+				Tag t = AdvertisementTagCreator.generateAdvertisementTag(adv);
+				tags.add(t);
+			}
+		}
+		return ok(gallery.render("", tags));
 	}
 	
 	// javascript routes

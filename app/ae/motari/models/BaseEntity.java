@@ -1,4 +1,4 @@
-package models;
+package ae.motari.models;
 
 import java.io.Serializable;
 

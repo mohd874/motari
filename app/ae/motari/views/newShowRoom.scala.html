@@ -1,4 +1,4 @@
-@(showRoomForm: Form[forms.ShowRoomForm])
+@(showRoomForm: play.data.Form[ae.motari.forms.ShowRoomForm])
 
 @import helper._
 
@@ -6,7 +6,7 @@
 
 	<h1>Add A Show Room</h1>
 	
-	@form(routes.Application.saveShowRoom(), 'enctype -> "multipart/form-data"){
+	@form(ae.motari.controllers.routes.Application.saveShowRoom(), 'enctype -> "multipart/form-data"){
 		@inputText(showRoomForm("name"), '_label -> "Name")
 		@inputText(showRoomForm("location"), '_label -> "Location")
 		@inputFile(showRoomForm("logo"), '_label -> "logo")
@@ -17,7 +17,7 @@
 		
 		<div class="actions">
 	        <input type="submit" value="Add new Show Room" class="btn primary"> or 
-	        <a href="@routes.Application.index()" class="btn">Cancel</a> 
+	        <a href="@ae.motari.controllers.routes.Application.index()" class="btn">Cancel</a> 
 	    </div>
 	}    
 }

@@ -28,6 +28,15 @@ import static org.fest.assertions.Assertions.*;
  */
 public class ApplicationTest {
 
+	private FakeApplication app;
+	
+	@Before
+	public void setup(){
+		Map<String, String> settings = new HashMap<String, String>();
+		settings.put("db.default.url", "jdbc:h2:tcp://localhost/D:/workspace/motari/data/test-db");
+		settings.put("db.default.jndiName", "Default");
+		app = Helpers.fakeApplication(settings);
+	}
 	// @Test
 	// public void simpleCheck() {
 	// int a = 1 + 1;
@@ -44,7 +53,7 @@ public class ApplicationTest {
 
 	@Test
 	public void searchShowRoomTest() {
-		running(fakeApplication(), new Runnable() {
+		running(app, new Runnable() {
 			public void run() {
 				String searchTerm = "car";
 				List<ShowRoom> result = ShowRoom.findWhereNameLike(searchTerm);

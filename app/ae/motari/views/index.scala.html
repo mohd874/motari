@@ -1,4 +1,4 @@
-@(message: String, rooms: List[ShowRoom], advs: List[Advertisement])
+@(message: String, rooms: List[ae.motari.models.ShowRoom], advs: List[ae.motari.models.Advertisement])
 
 @main("Welcome to Play") {
 	<div>
@@ -45,12 +45,12 @@
 		<ul>
 			@advs.map {ad => 
 				<li>
-					<a href="@routes.Application.advertisementDetails(ad.id)">@ad.title</a>
+					<a href="@ae.motari.controllers.routes.Application.advertisementDetails(ad.id)">@ad.title</a>
 					<img style="width:70px" src="@routes.Assets.at("images/advertisements/"+ad.id+"/"+ad.thumbnail)" alt="@ad.title" />
 				</li>
 			}
 		</ul>
-		<a href="@routes.Application.todo">View all</a>
+		<a href="@ae.motari.controllers.routes.Application.todo">View all</a>
 	</div>
 	</br>
 	<hr>
@@ -60,10 +60,10 @@
 		<ul>
 		@rooms.map { r => 
 			<li>
-				<a href="@routes.Application.showRoomDetails(r.id)">@r.name</a><img style="width:70px" src="@routes.Assets.at("images/cars/"+r.id+"/"+r.logo)" alt="@r.name" />
+				<a href="@ae.motari.controllers.routes.Application.showRoomDetails(r.id)">@r.name</a><img style="width:70px" src="@routes.Assets.at("images/cars/"+r.id+"/"+r.logo)" alt="@r.name" />
 			</li>
 		}	
 		</ul>
-		<a href="@routes.Application.todo">View all</a>
+		<a href="@ae.motari.controllers.routes.Application.todo">View all</a>
 	</div>
 }

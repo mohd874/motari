@@ -1,0 +1,8 @@
+@(message: String, advs: List[ae.motari.models.Advertisement])
+<ul>
+	@advs.map{ a =>
+		<li>
+			@a.title
+		</li>
+	}
+</ul>

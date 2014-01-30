@@ -1,12 +1,14 @@
-@(message: String, adv: Advertisement)
+@(message: String, adv: ae.motari.models.Advertisement)
 
+@import ae.motari.models._
+@import ae.motari._
 @main(adv.title + " Details"){
 <h2>@adv.title Details</h2>
 
 <ul>
 	<li>
 		<p>
-			Descrition:  @adv.description
+			Description:  @adv.description
 		</p>
 	</li>
 	<li>

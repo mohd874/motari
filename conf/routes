@@ -2,25 +2,35 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Application Controller
 # Home page
-GET     /                           controllers.Application.index()
-
-GET   	/showRoom/new             	controllers.Application.newShowRoom()
-POST   	/showRoom/saveNew          	controllers.Application.saveShowRoom()
-
-GET   	/advertisement/new         	controllers.Application.newAdvertisement()
-POST   	/advertisement/saveNew      controllers.Application.saveAdvertisement()
-
-GET		/showRoom/:id				controllers.Application.showRoomDetails(id: Long)
-GET		/advertisement/:id			controllers.Application.advertisementDetails(id: Long)
-
-POST	/find/showRoom/:query		controllers.Application.searchShowRoom(query: String)
-POST	/find/advertisement/:query	controllers.Application.searchAdvertisement(query: String)
-
-# javascript routes
-GET     /javascriptRoutes    		 controllers.Application.javascriptRoutes()
-
-# For unimplemented pages
-GET		/TODO						controllers.Application.todo()
+GET     /                           ae.motari.controllers.Application.index()
+                                    
+GET   	/showRoom/new             	ae.motari.controllers.Application.newShowRoom()
+POST   	/showRoom/saveNew          	ae.motari.controllers.Application.saveShowRoom()
+                                    
+GET   	/advertisement/new         	ae.motari.controllers.Application.newAdvertisement()
+POST   	/advertisement/saveNew      ae.motari.controllers.Application.saveAdvertisement()
+                                    
+GET		/showRoom/:id				ae.motari.controllers.Application.showRoomDetails(id: Long)
+GET		/advertisement/:id			ae.motari.controllers.Application.advertisementDetails(id: Long)
+                                    
+POST	/find/showRoom/:query		ae.motari.controllers.Application.searchShowRoom(query: String)
+POST	/find/advertisement/:query	ae.motari.controllers.Application.searchAdvertisement(query: String)
+                                    
+GET		/gallery/:type				ae.motari.controllers.Application.gallery(type: String)
+                                    
+# Admin Controller                  
+GET		/admin/								ae.motari.controllers.admin.Admin.index()
+GET		/admin/crud/carTypes				ae.motari.controllers.admin.Admin.crudCarType()
+POST	/admin/crud/saveTypes				ae.motari.controllers.admin.Admin.saveCarType()
+POST	/admin/crud/updateTypes				ae.motari.controllers.admin.Admin.updateCarType()
+GET		/admin/crud/deleteType/:id		ae.motari.controllers.admin.Admin.deleteCarType(id: Long)
+                                    
+# javascript routes                 
+GET     /javascriptRoutes    		ae.motari.controllers.Application.javascriptRoutes()
+                                    
+# For unimplemented pages           
+GET		/TODO						ae.motari.controllers.Application.todo()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

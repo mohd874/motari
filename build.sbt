@@ -9,3 +9,8 @@ libraryDependencies ++= Seq(
 )     
 
 play.Project.playJavaSettings
+
+ebeanEnabled := true
+  
+compile in Test <<= PostCompile(Test)
+

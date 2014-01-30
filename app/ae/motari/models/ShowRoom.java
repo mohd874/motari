@@ -1,4 +1,4 @@
-package models;
+package ae.motari.models;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "show_room")
+@Table(name = "SHOW_ROOM")
 public class ShowRoom extends BaseEntityAudit {
 
 	public String name;

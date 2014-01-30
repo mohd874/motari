@@ -1,6 +1,6 @@
-package forms;
+package ae.motari.forms;
 
-import models.ShowRoom;
+import ae.motari.models.ShowRoom;
 
 public class ShowRoomForm {
 

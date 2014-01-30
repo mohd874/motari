@@ -1,0 +1,13 @@
+@(message: String, tagContent: ae.motari.dataView.Tag)
+
+<div class="roundBorder10">
+	<h3>@tagContent.title</h3>
+	<p>
+		<div style="position:absolute;">
+			@tagContent.description
+		</div>
+		<div style="position:absolute;">
+			@img("", tagContent.imgSrc)
+		</div>
+	</p>
+</div>

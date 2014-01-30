@@ -1,0 +1,13 @@
+.roundBorder10 {
+	border-radius: 10px;
+	background: gray;
+}
+
+.roundBorder50 {
+	border-radius: 50px;
+}
+
+.edit {
+	display: none;
+}
+

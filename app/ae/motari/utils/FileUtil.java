@@ -1,4 +1,4 @@
-package utils;
+package ae.motari.utils;
 
 import java.io.File;
 import java.io.IOException;
