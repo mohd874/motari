@@ -106,8 +106,15 @@ public class Application extends BaseController {
 		return ok(searchAdvertisement.render("",Advertisement.findWhereTitleLike(query)));
 	}
 
-	public static Result getInfoTagForAdvetisement(Advertisement adv){
-		return ok(tag.render("",AdvertisementTagCreator.generateAdvertisementTag(adv)));
+	public static Result getTagsForAdvetisements(){
+		List<Advertisement> advs = Advertisement.find.all();
+		List<Tag> advTags = new ArrayList<>(advs.size());
+		
+		for(Advertisement a : advs){
+			advTags.add(getInfoTagForAdvetisement(a));
+		}
+		
+		return ok(gallery.render("",advTags));
 	}
 	
 	public static Result gallery(String type){
@@ -138,6 +145,10 @@ public class Application extends BaseController {
 	
 	
 	// private methods
+	private static Tag getInfoTagForAdvetisement(Advertisement adv){
+		return AdvertisementTagCreator.generateAdvertisementTag(adv);
+	}
+	
 	private static String saveAdvertisementFile(Advertisement adv, FilePart part) {
 		String newFilename = generateFileName(part.getFilename());
 		adv.addImage(newFilename);

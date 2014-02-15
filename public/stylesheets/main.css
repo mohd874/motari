@@ -11,3 +11,18 @@
 	display: none;
 }
 
+.blackBorder {
+	border: 1px solid black;
+}
+
+.width200 {
+	width: 200px;
+}
+
+.padding10 {
+	padding: 10px;
+}
+
+.margin10 {
+	margin: 10px;
+}

@@ -18,14 +18,15 @@ GET		/advertisement/:id			ae.motari.controllers.Application.advertisementDetails
 POST	/find/showRoom/:query		ae.motari.controllers.Application.searchShowRoom(query: String)
 POST	/find/advertisement/:query	ae.motari.controllers.Application.searchAdvertisement(query: String)
                                     
-GET		/gallery/:type				ae.motari.controllers.Application.gallery(type: String)
-                                    
+#GET		/gallery/:type				ae.motari.controllers.Application.gallery(type: String)
+GET		/tags/advertisements		ae.motari.controllers.Application.getTagsForAdvetisements() 
+                                   
 # Admin Controller                  
 GET		/admin/								ae.motari.controllers.admin.Admin.index()
 GET		/admin/crud/carTypes				ae.motari.controllers.admin.Admin.crudCarType()
 POST	/admin/crud/saveTypes				ae.motari.controllers.admin.Admin.saveCarType()
 POST	/admin/crud/updateTypes				ae.motari.controllers.admin.Admin.updateCarType()
-GET		/admin/crud/deleteType/:id		ae.motari.controllers.admin.Admin.deleteCarType(id: Long)
+GET		/admin/crud/deleteType/:id			ae.motari.controllers.admin.Admin.deleteCarType(id: Long)
                                     
 # javascript routes                 
 GET     /javascriptRoutes    		ae.motari.controllers.Application.javascriptRoutes()

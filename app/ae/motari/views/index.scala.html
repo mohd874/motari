@@ -2,10 +2,14 @@
 
 @main("Welcome to Play") {
 	<div>
-		<input type="text" id="search" class="search"/> <input type="button" id="searchBtn" value="Search" />
+		<div class="search">
+			<input type="text" id="search" class="search"/> 
+			<input type="button" id="searchBtn" value="Search" />
+		</div>
 		<script>
 			$('#searchBtn').click(function(e) {
-			    var searchQuery = $("#search").val();
+				$('.searchResult').css('display', 'block')
+				var searchQuery = $("#search").val();
 			    myJsRoutes.controllers.Application.searchShowRoom(searchQuery).ajax({
 					success: function(data){
 						$('.showRoomResults').html(data)
@@ -16,11 +20,16 @@
 						$('.advertisementResults').html(data)
 					}
 				})
+				$('.results').css('display', 'block')
+				$('.loading').css('display', 'none')
+				
 			    return false;
 			});
 		</script>
-		<div class="searchResult">
-			<table>
+		<div class="searchResult" style="display: none">
+			<img alt="loading" src="@routes.Assets.at("images/loading.gif")" />
+			
+			<table class="results" style="display:none">
 				<tr>
 					<th colspan="2">Results</th>
 				</tr>
@@ -42,14 +51,32 @@
 	<div>
 		<h2>Recent Advertisements</h2>
 		
-		<ul>
+		<!-- ul>
 			@advs.map {ad => 
 				<li>
 					<a href="@ae.motari.controllers.routes.Application.advertisementDetails(ad.id)">@ad.title</a>
 					<img style="width:70px" src="@routes.Assets.at("images/advertisements/"+ad.id+"/"+ad.thumbnail)" alt="@ad.title" />
 				</li>
 			}
-		</ul>
+		</ul -->
+		
+		<div class="gallery">
+			
+		</div>
+		<script>
+			$.ajax({
+				type : 'GET',
+	            url : "@ae.motari.controllers.routes.Application.getTagsForAdvetisements()",
+	            dataType : "text",
+	            success : function(data) {
+	                $('.gallery').html(data)
+	            },
+	            error : function(data) {
+	                setError('Make call failed');
+	            }
+			});
+		</script>
+		
 		<a href="@ae.motari.controllers.routes.Application.todo">View all</a>
 	</div>
 	</br>
@@ -60,7 +87,8 @@
 		<ul>
 		@rooms.map { r => 
 			<li>
-				<a href="@ae.motari.controllers.routes.Application.showRoomDetails(r.id)">@r.name</a><img style="width:70px" src="@routes.Assets.at("images/cars/"+r.id+"/"+r.logo)" alt="@r.name" />
+				<a href="@ae.motari.controllers.routes.Application.showRoomDetails(r.id)">@r.name</a>
+				<img style="width:70px" src="@routes.Assets.at("images/cars/"+r.id+"/"+r.logo)" alt="@r.name" />
 			</li>
 		}	
 		</ul>
