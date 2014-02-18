@@ -1,6 +1,7 @@
 @(message: String, tags: List[ae.motari.dataView.Tag])
 
-Advertisements: @tags.size
+<p>Advertisements: @tags.size</p>
+
 @tags.map { t =>
 	@tag("",t)		
 }

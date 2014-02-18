@@ -26,3 +26,7 @@
 .margin10 {
 	margin: 10px;
 }
+
+.tag {
+	display: inline-block;
+}
