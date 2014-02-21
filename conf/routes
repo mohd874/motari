@@ -18,8 +18,8 @@ GET		/advertisement/:id			ae.motari.controllers.Application.advertisementDetails
 POST	/find/showRoom/:query		ae.motari.controllers.Application.searchShowRoom(query: String)
 POST	/find/advertisement/:query	ae.motari.controllers.Application.searchAdvertisement(query: String)
                                     
-#GET		/gallery/:type				ae.motari.controllers.Application.gallery(type: String)
-GET		/tags/advertisements		ae.motari.controllers.Application.getTagsForAdvetisements() 
+GET		/gallery/:type/:view				ae.motari.controllers.Application.gallery(type: String, view: String)
+#GET		/tags/advertisements		ae.motari.controllers.Application.getTagsForAdvetisements() 
                                    
 # Admin Controller                  
 GET		/admin/								ae.motari.controllers.admin.Admin.index()

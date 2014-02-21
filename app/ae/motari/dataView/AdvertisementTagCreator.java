@@ -4,14 +4,13 @@ import ae.motari.models.Advertisement;
 
 public class AdvertisementTagCreator {
 
-	public static Tag generateAdvertisementTag(Advertisement adv){
+	public static Tag generateTagFor(Advertisement adv){
 		Tag tag = new Tag();
-		tag.title = adv.title;
-		tag.description = adv.description;
-		tag.imgSrc = adv.id+"/"+adv.thumbnail;
-		tag.additionalData = new String[5];
 		
-		//add additionalData here
+		tag.data.put("title", adv.title);
+		tag.data.put("description", adv.description);
+		tag.data.put("imgSrc", "advertisements/"+adv.id+"/"+adv.thumbnail);
+		tag.data.put("link", "/advertisement/"+adv.id);
 		
 		return tag;
 	}

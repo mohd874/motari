@@ -12,6 +12,7 @@ import play.data.Form;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 import ae.motari.dataView.AdvertisementTagCreator;
+import ae.motari.dataView.ShowRoomTagCreator;
 import ae.motari.dataView.Tag;
 import ae.motari.forms.AdvertisementForm;
 import ae.motari.forms.ShowRoomForm;
@@ -106,28 +107,25 @@ public class Application extends BaseController {
 		return ok(searchAdvertisement.render("",Advertisement.findWhereTitleLike(query)));
 	}
 
-	public static Result getTagsForAdvetisements(){
-		List<Advertisement> advs = Advertisement.find.all();
-		List<Tag> advTags = new ArrayList<>(advs.size());
-		
-		for(Advertisement a : advs){
-			advTags.add(getInfoTagForAdvetisement(a));
-		}
-		
-		return ok(gallery.render("",advTags));
-	}
-	
-	public static Result gallery(String type){
+	public static Result gallery(String type, String view){
 		List<Tag> tags = new ArrayList<Tag>();
-		List<Advertisement> advs = Advertisement.find.all();
-		Logger.info("advs: " + advs.size());
+		
 		if("adv".equals(type)){
+			List<Advertisement> advs = Advertisement.find.all();
+			Logger.info("advs: " + advs.size());
 			for(Advertisement adv : advs){
-				Tag t = AdvertisementTagCreator.generateAdvertisementTag(adv);
+				Tag t = AdvertisementTagCreator.generateTagFor(adv);
+				tags.add(t);
+			}
+		}else if("room".equals(type)){
+			List<ShowRoom> rooms = ShowRoom.find.all();
+			Logger.info("rooms: " + rooms.size());
+			for(ShowRoom r : rooms){
+				Tag t = ShowRoomTagCreator.generateTagFor(r);
 				tags.add(t);
 			}
 		}
-		return ok(gallery.render("", tags));
+		return ok(gallery.render(view, tags));
 	}
 	
 	// javascript routes
@@ -146,7 +144,7 @@ public class Application extends BaseController {
 	
 	// private methods
 	private static Tag getInfoTagForAdvetisement(Advertisement adv){
-		return AdvertisementTagCreator.generateAdvertisementTag(adv);
+		return AdvertisementTagCreator.generateTagFor(adv);
 	}
 	
 	private static String saveAdvertisementFile(Advertisement adv, FilePart part) {
