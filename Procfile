@@ -1,1 +1,1 @@
-web: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true
+web: target/universal/stage/bin/motari -Dhttp.port=${PORT} -DapplyEvolutions.default=true
