@@ -11,6 +11,6 @@ public class Tag {
 	public Map<String, String> data;
 	
 	public Tag() {
-		data = new HashMap<>();
+		data = new HashMap<String, String>();
 	}
 }
