@@ -1,1 +1,1 @@
-web: play -Dhttp.port=${PORT} -DapplyEvolutions.default=true
+web: -Dhttp.port=${PORT} -DapplyEvolutions.default=true
