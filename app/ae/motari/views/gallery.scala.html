@@ -1,20 +1,20 @@
-@(message: String, tags: List[ae.motari.dataView.Tag])
+@(message: String, data: List[Map[String, String]])
 
-@display(list: List[ae.motari.dataView.Tag]) = {
-  <p>Found: @tags.size</p>
+@display(list: List[Map[String, String]]) = {
+  <p>Found: @data.size</p>
 	
-	@tags.map { t =>
-		@tag("",t)		
+	@data.map { m =>
+		@tag("",m)		
 	}
 }
 
 @if("full".equals(message)) {
   @main("Welcome to Motari") {
-  	@display(tags)	
+  	@display(data)	
   }  
 } 
 
 @if("mini".equals(message)) {
-  @display(tags)
+  @display(data)
 }
 

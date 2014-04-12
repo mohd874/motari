@@ -1,17 +1,17 @@
-@(message: String, tagContent: ae.motari.dataView.Tag)
+@(message: String, data: Map[String, String])
 
 <div class="roundBorder10 blackBorder width200 padding10 margin10 tag">
 	<h3>
-		<a href="@tagContent.data("link")">
-			@tagContent.data("title")
+		<a href="@data("link")">
+			@data("title")
 		</a>
 	</h3>
 	<p>
 		<div>
-			@tagContent.data("description")
+			@data("description")
 		</div>
 		<div>
-			@img("", tagContent.data("imgSrc"))
+			<img src="@data("imgSrc")" />
 		</div>
 	</p>
 </div>

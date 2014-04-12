@@ -4,14 +4,15 @@ import static play.data.Form.form;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import play.Logger;
 import play.Routes;
 import play.data.Form;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
-import ae.motari.dataView.AdvertisementTagCreator;
 import ae.motari.dataView.ShowRoomTagCreator;
 import ae.motari.dataView.Tag;
 import ae.motari.forms.AdvertisementForm;
@@ -20,7 +21,14 @@ import ae.motari.models.Advertisement;
 import ae.motari.models.CarType;
 import ae.motari.models.ShowRoom;
 import ae.motari.utils.FileUtil;
-import ae.motari.views.html.*;
+import ae.motari.views.html.advertisement;
+import ae.motari.views.html.gallery;
+import ae.motari.views.html.index;
+import ae.motari.views.html.newAdvertisement;
+import ae.motari.views.html.newShowRoom;
+import ae.motari.views.html.searchAdvertisement;
+import ae.motari.views.html.searchShowRoom;
+import ae.motari.views.html.showRoom;
 
 public class Application extends BaseController {
 
@@ -108,24 +116,34 @@ public class Application extends BaseController {
 	}
 
 	public static Result gallery(String type, String view){
-		List<Tag> tags = new ArrayList<Tag>();
+		List<Map<String,String>> data = new ArrayList<Map<String,String>>();
 		
 		if("adv".equals(type)){
 			List<Advertisement> advs = Advertisement.find.all();
 			Logger.info("advs: " + advs.size());
 			for(Advertisement adv : advs){
-				Tag t = AdvertisementTagCreator.generateTagFor(adv);
-				tags.add(t);
+//				Tag t = AdvertisementTagCreator.generateTagFor(adv);
+//				tags.add(t);
+				Map<String, String> m = new HashMap<>();
+				m.put("title", adv.title);
+				m.put("description", adv.description);
+				m.put("imgSrc", "advertisements/"+adv.id+"/"+adv.thumbnail);
+				m.put("link", "/advertisement/"+adv.id);
+				data.add(m);
 			}
 		}else if("room".equals(type)){
 			List<ShowRoom> rooms = ShowRoom.find.all();
 			Logger.info("rooms: " + rooms.size());
 			for(ShowRoom r : rooms){
-				Tag t = ShowRoomTagCreator.generateTagFor(r);
-				tags.add(t);
+				Map<String, String> m = new HashMap<>();
+				m.put("title", r.name);
+				m.put("description", r.description);
+				m.put("imgSrc", "cars/"+r.id+"/"+r.logo);
+				m.put("link", "/showRoom/"+r.id);
+				data.add(m);
 			}
 		}
-		return ok(gallery.render(view, tags));
+		return ok(gallery.render(view, data));
 	}
 	
 	// javascript routes
@@ -143,9 +161,9 @@ public class Application extends BaseController {
 	
 	
 	// private methods
-	private static Tag getInfoTagForAdvetisement(Advertisement adv){
-		return AdvertisementTagCreator.generateTagFor(adv);
-	}
+//	private static Tag getInfoTagForAdvetisement(Advertisement adv){
+//		return AdvertisementTagCreator.generateTagFor(adv);
+//	}
 	
 	private static String saveAdvertisementFile(Advertisement adv, FilePart part) {
 		String newFilename = generateFileName(part.getFilename());

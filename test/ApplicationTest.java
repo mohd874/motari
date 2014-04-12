@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ae.motari.models.*;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 import models.*;
