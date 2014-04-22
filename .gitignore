@@ -17,3 +17,5 @@ dist
 public/images/advertisements/*
 public/images/cars/*
 data/*
+design/*
+*.swp

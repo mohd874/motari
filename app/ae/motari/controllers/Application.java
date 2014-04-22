@@ -13,8 +13,6 @@ import play.Routes;
 import play.data.Form;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
-import ae.motari.dataView.ShowRoomTagCreator;
-import ae.motari.dataView.Tag;
 import ae.motari.forms.AdvertisementForm;
 import ae.motari.forms.ShowRoomForm;
 import ae.motari.models.Advertisement;

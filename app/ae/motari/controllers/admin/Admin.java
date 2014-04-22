@@ -15,7 +15,6 @@ import java.util.*;
 import ae.motari.views.html.*;
 import ae.motari.views.html.admin.*;
 import ae.motari.controllers.*;
-import ae.motari.dataView.*;
 import ae.motari.models.*;
 
 public class Admin extends BaseController {

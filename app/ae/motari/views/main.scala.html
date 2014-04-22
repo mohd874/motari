@@ -10,11 +10,11 @@
 	    <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap/bootstrap.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/responsiveslides.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 		<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
 		<script src="@routes.Assets.at("javascripts/bootstrap/bootstrap.js")" type="text/javascript"></script>
-		<script src="@routes.Assets.at("javascripts/amazingslider/amazingslider.js")" type="text/javascript"></script>
-		<script src="@routes.Assets.at("javascripts/amazingslider/initslider-1.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/responsiveslides.js")" type="text/javascript"></script>
         <script src='@ae.motari.controllers.routes.Application.javascriptRoutes()'></script>
     </head>
     <body>
@@ -33,7 +33,7 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="@ae.motari.controllers.routes.Application.index" >Home</a></li>
 						<li><a href="@ae.motari.controllers.routes.Application.gallery("adv", "full")" >Advertisements</a></li>
-						<li><a href="@ae.motari.controllers.routes.Application.gallery("car", "full") >Show Rooms</a></li>
+						<li><a href="@ae.motari.controllers.routes.Application.gallery("car", "full")" >Show Rooms</a></li>
 						<li><a href="@ae.motari.controllers.routes.Application.newAdvertisement" >New Advertisement</a></li>	
 						<li><a href="@ae.motari.controllers.routes.Application.newShowRoom" >New Show Room</a></li>
 					</ul>

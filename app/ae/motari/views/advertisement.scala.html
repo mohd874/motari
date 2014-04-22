@@ -15,13 +15,22 @@
 		<p>
 			Images: <br/>  
 			@adv.images.split(",").zipWithIndex.map {case (img, i) =>
-				<img style="width: 70px;"src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" alt="@img" />
+				<img style="width: 70px;" src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" alt="@img" />
 				
 				@if((1+i) % 3 == 0){</br>}
 			}
 		</p>
-		@slider("", adv.images.split(",").map{img => "images/advertisements/"+adv.id+"/"+img}.toList)
+		<ul class="rslides">
+			@adv.images.split(",").map{img => 
+				<img src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" />
+			}
+		</ul>
 	</li>
+	<script>
+        $(function() {
+       		$(".rslides").responsiveSlides();
+        });
+	</script>
 	
 </lu>
 }
