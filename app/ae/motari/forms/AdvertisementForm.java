@@ -26,7 +26,7 @@ public class AdvertisementForm {
 		adv.manufacturer = manufacturer;
 		adv.model = model;
 		adv.yearMade = yearMade;
-		adv.type = CarType.findByExactName(type);
+		adv.carType = CarType.findByExactName(type);
 		
 		ShowRoom room = ShowRoom.find.byId(owner);
 		adv.owner = room;

@@ -1,9 +1,13 @@
 package ae.motari.models;
 
-import java.util.List;
+import java.util.*;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import play.db.ebean.*;
+import play.data.format.*;
+import play.data.validation.*;
+
+import com.avaje.ebean.*;
 
 @Entity
 @Table(name = "ADVERTISEMENT")
@@ -11,18 +15,32 @@ public class Advertisement extends BaseEntityAudit {
 
 	private static final long serialVersionUID = 3323282328164482932L;
 
+    @Constraints.Required
 	public String title;
+
 	public String description;
+
+    @Constraints.Required
 	public String thumbnail;
+
 	public String images;
+
+    @ManyToOne
 	public ShowRoom owner;
 	
+    @Constraints.Required
 	public int price;
+
 	public int countViews;
+
 	public String manufacturer;
+
 	public String model;
+
 	public int yearMade;
-	public CarType type;
+
+    @ManyToOne
+	public CarType carType;
 
 	public static Finder<Long, Advertisement> find = new Finder<Long, Advertisement>(Long.class, Advertisement.class);
 

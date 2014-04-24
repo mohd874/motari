@@ -25,7 +25,7 @@ ads:
         manufacturer:   Toyo
         model:   Super
         yearMade:   2009
-        type:   !!ae.motari.models.CarType
+        carType:   !!ae.motari.models.CarType
                     id: 1
     
 types:

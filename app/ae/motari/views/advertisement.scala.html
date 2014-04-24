@@ -3,35 +3,87 @@
 @import ae.motari.models._
 @import ae.motari._
 @main(adv.title + " Details"){
-<h2>@adv.title Details</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@adv.title Details</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 lead">
+            <p>
+                @adv.description
+            </p>
+        </div>
+        <div class="col-md-12">
+            <p>
+                Advertized by:  @adv.owner.name
+            </p>
+        </div>
+        <div class="col-md-12">
+            <p>
+                @adv.images.split(",").zipWithIndex.map {case (img, i) =>
+                    <img style="width: 70px;" src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" alt="@img" />
+                    
+                    @if((1+i) % 3 == 0){</br>}
+                }
+            </p>
+            <ul class="rslides">
+                @adv.images.split(",").map{img => 
+                    <img src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" />
+                }
+            </ul>
+            <div class="pagination">
+            </div>
+            <script>
+                $(function() {
+                    $(".rslides").responsiveSlides({
+                      pager: true,           // Boolean: Show pager, true or false
+                      nav: true,             // Boolean: Show navigation, true or false
+                      pause: true,           // Boolean: Pause on hover, true or false
+                      pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+                      maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+                      navContainer: "div .pagination",       // Selector: Where controls should be appended to, default is after the 'ul'
+                      manualControls: "",     // Selector: Declare custom pager navigation
+                      namespace: "rslides",   // String: Change the default namespace used
+                      before: function(){},   // Function: Before callback
+                      after: function(){}     // Function: After callback
+                    });
+                });
+            </script>
+        </div>
+        <div class="col-md-3">
+            <p>
+                Price: @adv.price
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p>
+                Viewed: @adv.countViews
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p>
+                Manufacturer: @adv.manufacturer
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p>
+                Model: @adv.model
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p>
+                Car Type: @adv.carType.name
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p>
+                Year: @adv.yearMade
+            </p>
+        </div>
 
-<ul>
-	<li>
-		<p>
-			Description:  @adv.description
-		</p>
-	</li>
-	<li>
-		<p>
-			Images: <br/>  
-			@adv.images.split(",").zipWithIndex.map {case (img, i) =>
-				<img style="width: 70px;" src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" alt="@img" />
-				
-				@if((1+i) % 3 == 0){</br>}
-			}
-		</p>
-		<ul class="rslides">
-			@adv.images.split(",").map{img => 
-				<img src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" />
-			}
-		</ul>
-	</li>
-	<script>
-        $(function() {
-       		$(".rslides").responsiveSlides();
-        });
-	</script>
-	
-</lu>
+    </div>        
+</div>
 }
 
