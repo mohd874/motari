@@ -42,6 +42,34 @@ public class Advertisement extends BaseEntityAudit {
     @ManyToOne
 	public CarType carType;
 
+    public String bodyCondition;
+
+    public String carCondition;
+
+    public String engineCondition;
+
+    public String driveTrain;
+
+    public int numberOfDoors;
+
+    public String exteriorColor;
+
+    public String interiorColor;
+
+    public int distanceDriven;
+
+    public String specs;
+
+    public int numberOfCylinders;
+
+    public int horsePower;
+
+    public String fuelType;
+
+    public String warrenty;
+
+    public String extras;
+
 	public static Finder<Long, Advertisement> find = new Finder<Long, Advertisement>(Long.class, Advertisement.class);
 
 	public void addImage(String img){

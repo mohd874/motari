@@ -1,33 +1,98 @@
-@(message: String, room: ae.motari.models.ShowRoom) @main(room.name + " Details") {
+@(message: String, room: ae.motari.models.ShowRoom)
 
-<h2>@room.name Details</h2>
-
-<ul>
-	<li>
-		<p>
-			Location:  @room.location
-		</p>
-	</li>
-	<li>
-		<p>
-			Logo:  <img style="width: 70px;"
-				src="@routes.Assets.at("images/cars/"+room.id+"/"+room.logo)" alt="@room.name" />
-		</p>
-	</li>
-	<li>
-		<p>
-			Phone:  @room.phone
-		</p>
-	</li>
-	<li>
-		<p>
-			Description:  @room.description
-		</p>
-	</li>
-	<li>
-		<p>
-			Email:  @room.email
-		</p>
-	</li>
-</lu>
+@import ae.motari.models._
+@import ae.motari._
+@main(room.name + " Details"){
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@room.name Details</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 lead">
+            <p>
+                @room.description
+            </p>
+        </div>
+        <div class="col-md-12">
+            <p>
+                Location:  @room.location
+            </p>
+        </div>
+        @*********************************************************
+        <div id="carSlide" class="col-md-12 carousel slide" data-interval="3000" data-ride="carousel">
+            <p>
+                <ol class="carousel-indicators">
+                    <!-- Carousel indicators -->
+                    @adv.images.split(",").zipWithIndex.map {case (img, i) =>
+                        <li data-target="#carSlide" data-slide-to="@i" class="@if(i==0){"active"}"></li>
+                    }
+                </ol> 
+            </p>
+            <div class="carousel-inner">
+                @adv.images.split(",").zipWithIndex.map{case (img, i) => 
+                    @if(i == 0){
+                        <div class="item active">
+                            <img src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" />
+                        </div>
+                    } else {
+                        <div class="item">
+                            <img src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" />
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <script src="@routes.Assets.at("javascripts/bootslider/bootslider.js")" type="text/javascript"></script>
+        <br/>
+        *********************************************************@
+    </div>        
+    <div class="row">
+        <!-- space -->
+        &nbsp;
+    </div>
+    <div class="row details"> 
+        <div class="col-lg-4">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Phone: @room.phone
+                </li>
+                <li class="list-group-item">
+                    Fax: @room.fax
+                </li>
+                <li class="list-group-item">
+                    Mobile: @room.mobile
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    P.O.Box: @room.poBox
+                </li>
+                <li class="list-group-item">
+                    Email: @room.email
+                </li>
+                <li class="list-group-item">
+                    Website: @room.website
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    &lt;Put something here&gt;
+                </li>
+                <li class="list-group-item">
+                    &lt;Put something here&gt;
+                </li>
+                <li class="list-group-item">
+                    &lt;Put something here&gt;
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 }
+

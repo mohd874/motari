@@ -13,7 +13,11 @@ public class ShowRoom extends BaseEntityAudit {
 	public String location;
 	public String logo;
 	public String phone;
+    public String fax;
+    public String mobile;
+    public String poBox;
 	public String email;
+    public String website;
 	public String description;
 	
 	public static Finder<Long, ShowRoom> find = new Finder<Long, ShowRoom>(Long.class, ShowRoom.class);
