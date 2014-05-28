@@ -69,7 +69,7 @@ ads:
     
     - !!ae.motari.models.Advertisement
         title:      Comfy And Reliable
-        description:      Really Nice Car
+        description:      Soooo good that you want to sleep in it
         thumbnail:       thumb1.jpg
         images:   img1.jpg,img2.jpg,img3.jpg
         owner:   !!ae.motari.models.ShowRoom
