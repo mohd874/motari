@@ -11,6 +11,30 @@ rooms:
         email:   e@ma.il
         description:   desc
     
+    - !!ae.motari.models.ShowRoom
+        name:      Luxury Room
+        location:       Madinat Zayed
+        logo:   logo.jpg
+        phone:   7582736
+        email:   e@ma.il
+        description:   We sell you luxury
+    
+    - !!ae.motari.models.ShowRoom
+        name:      Power auto
+        location:       Musafah
+        logo:   logo.jpg
+        phone:   442211
+        email:   e@ma.il
+        description:   Speed first
+    
+    - !!ae.motari.models.ShowRoom
+        name:      Classica
+        location:       Jumira
+        logo:   logo.jpg
+        phone:   889364
+        email:   e@ma.il
+        description:   Good Ol' Days
+    
 ads:
 
     - !!ae.motari.models.Advertisement
@@ -20,6 +44,51 @@ ads:
         images:   img1.jpg,img2.jpg,img3.jpg
         owner:   !!ae.motari.models.ShowRoom
                     id: 1
+        price:   5
+        countViews:   19
+        manufacturer:   Toyo
+        model:   Super
+        yearMade:   2009
+        carType:   !!ae.motari.models.CarType
+                    id: 1
+    
+    - !!ae.motari.models.Advertisement
+        title:      Suuuuupeeeer
+        description:      Title says all
+        thumbnail:       thumb1.jpg
+        images:   img1.jpg,img2.jpg,img3.jpg
+        owner:   !!ae.motari.models.ShowRoom
+                    id: 3
+        price:   800000
+        countViews:   19
+        manufacturer:   Duuuupeeeer
+        model:   Super
+        yearMade:   2009
+        carType:   !!ae.motari.models.CarType
+                    id: 1
+    
+    - !!ae.motari.models.Advertisement
+        title:      Comfy And Reliable
+        description:      Really Nice Car
+        thumbnail:       thumb1.jpg
+        images:   img1.jpg,img2.jpg,img3.jpg
+        owner:   !!ae.motari.models.ShowRoom
+                    id: 2
+        price:   5
+        countViews:   19
+        manufacturer:   Higher-Kinded Car
+        model:   Unknown
+        yearMade:   2001
+        carType:   !!ae.motari.models.CarType
+                    id: 1
+    
+    - !!ae.motari.models.Advertisement
+        title:      CC
+        description:     Just CC
+        thumbnail:       thumb1.jpg
+        images:   img1.jpg,img2.jpg,img3.jpg
+        owner:   !!ae.motari.models.ShowRoom
+                    id: 4
         price:   5
         countViews:   19
         manufacturer:   Toyo

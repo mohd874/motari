@@ -30,3 +30,6 @@
 .tag {
 	display: inline-block;
 }
+ .thumb {
+     width: 120px;
+}

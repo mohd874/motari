@@ -1,8 +1,14 @@
 @(message: String, advs: List[ae.motari.models.Advertisement])
-<ul>
+<table class="table table-striped table-hover">
+    <tbody>
 	@advs.map{ a =>
-		<li>
-			@a.title
-		</li>
+        <tr>
+            <td> @a.title </td>
+            <td> @a.description </td>
+            <td> <img class="thumb" src="@(routes.Assets.at("images/advertisements/"+a.id+"/"+a.thumbnail))" /> </td>
+            <td> @a.owner.name </td>
+            <td> @a.price </td>
+        </tr>
 	}
-</ul>
+    </tbody>
+</table>
