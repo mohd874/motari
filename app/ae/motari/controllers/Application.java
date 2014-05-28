@@ -125,7 +125,7 @@ public class Application extends BaseController {
 				Map<String, String> m = new HashMap<>();
 				m.put("title", adv.title);
 				m.put("description", adv.description);
-				m.put("imgSrc", "advertisements/"+adv.id+"/"+adv.thumbnail);
+				m.put("imgSrc", "images/advertisements/"+adv.id+"/"+adv.thumbnail);
 				m.put("link", "/advertisement/"+adv.id);
 				data.add(m);
 			}
@@ -136,7 +136,7 @@ public class Application extends BaseController {
 				Map<String, String> m = new HashMap<>();
 				m.put("title", r.name);
 				m.put("description", r.description);
-				m.put("imgSrc", "cars/"+r.id+"/"+r.logo);
+				m.put("imgSrc", "images/cars/"+r.id+"/"+r.logo);
 				m.put("link", "/showRoom/"+r.id);
 				data.add(m);
 			}

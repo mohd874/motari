@@ -1,10 +1,10 @@
 @(message: String, rooms: List[ae.motari.models.ShowRoom], advs: List[ae.motari.models.Advertisement])
 
 @main("Welcome to Motari") {
-	<div>
-		<div class="search">
-			<input type="text" id="search" class="search"/> 
-			<input type="button" id="searchBtn" value="Search" />
+	<div class="row">
+		<div class="col-lg-12">
+			<input type="text" id="search" class="col-lg-10 input-sm"/> 
+			<input type="button" id="searchBtn" value="Search" class="btn btn-primary btn-sm col-lg-2" />
 		</div>
 		<script>
 			$('#searchBtn').click(function(e) {
@@ -49,17 +49,19 @@
 			}
 			
 		</script>
-		<div class="searchResult" style="display: none">
+    </div>
+	<div class="row">
+		<div class="searchResult col-lg-12" style="display: none">
 			<img class="loading" alt="loading" src="@routes.Assets.at("images/loading.gif")" />
 			
-			<div class="advertisementResults">
+			<div class="advertisementResults col-lg-12">
 			</div>
 		</div>
 	</div>
-	<div>
+	<div class="row col-lg-12">
 		<h2>Recent Advertisements</h2>
 		
-		<div class="gallery gallery_adv">
+		<div class="gallery gallery_adv col-lg-12">
 			
 		</div>
 		<script>
@@ -70,10 +72,10 @@
 	</div>
 	</br>
 	<hr>
-	<div>
+	<div class="row col-lg-12">
 		<h2>New Show Rooms</h2>
 		
-		<div class="gallery gallery_room">
+		<div class="gallery gallery_room col-lg-12">
 			
 		</div>
 		<script>
