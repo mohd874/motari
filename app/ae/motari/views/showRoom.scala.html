@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <h2>@room.name Details</h2>
+            <h2 class="col-lg-6">@room.name </h2> <img class="thumb" src="@routes.Assets.at("images/cars/"+room.id+"/"+room.logo)" />
         </div>
     </div>
     <div class="row">
@@ -15,80 +15,58 @@
                 @room.description
             </p>
         </div>
-        <div class="col-md-12">
-            <p>
-                Location:  @room.location
-            </p>
-        </div>
-        @*********************************************************
-        <div id="carSlide" class="col-md-12 carousel slide" data-interval="3000" data-ride="carousel">
-            <p>
-                <ol class="carousel-indicators">
-                    <!-- Carousel indicators -->
-                    @adv.images.split(",").zipWithIndex.map {case (img, i) =>
-                        <li data-target="#carSlide" data-slide-to="@i" class="@if(i==0){"active"}"></li>
-                    }
-                </ol> 
-            </p>
-            <div class="carousel-inner">
-                @adv.images.split(",").zipWithIndex.map{case (img, i) => 
-                    @if(i == 0){
-                        <div class="item active">
-                            <img src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" />
-                        </div>
-                    } else {
-                        <div class="item">
-                            <img src="@routes.Assets.at("images/advertisements/"+adv.id+"/"+img)" />
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-        <script src="@routes.Assets.at("javascripts/bootslider/bootslider.js")" type="text/javascript"></script>
-        <br/>
-        *********************************************************@
     </div>        
     <div class="row">
         <!-- space -->
         &nbsp;
     </div>
     <div class="row details"> 
-        <div class="col-lg-4">
+    <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+        <li class="active">
+            <a href="#summery" data-toggle="tab">Summery</a>
+        </li>
+        <li class="">
+            <a href="#contact" data-toggle="tab">Contact</a>
+        </li>
+        <li class="">
+            <a href="#other" data-toggle="tab">Other</a>
+        </li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="summery">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    About: @room.description
+                </li>
+                <li class="list-group-item">
+                    Location: @room.location
+                </li>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="contact">
             <ul class="list-group">
                 <li class="list-group-item">
                     Phone: @room.phone
                 </li>
                 <li class="list-group-item">
-                    Fax: @room.fax
+                    Mobile: @room.phone
                 </li>
                 <li class="list-group-item">
-                    Mobile: @room.mobile
+                    Fax: @room.fax
                 </li>
             </ul>
         </div>
-        <div class="col-lg-4">
+        <div class="tab-pane fade" id="other">
             <ul class="list-group">
                 <li class="list-group-item">
-                    P.O.Box: @room.poBox
+                    P.O. Box: @room.poBox
                 </li>
                 <li class="list-group-item">
                     Email: @room.email
                 </li>
                 <li class="list-group-item">
                     Website: @room.website
-                </li>
-            </ul>
-        </div>
-        <div class="col-lg-4">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    &lt;Put something here&gt;
-                </li>
-                <li class="list-group-item">
-                    &lt;Put something here&gt;
-                </li>
-                <li class="list-group-item">
-                    &lt;Put something here&gt;
                 </li>
             </ul>
         </div>

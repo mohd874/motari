@@ -6,11 +6,11 @@
     <table class="table table-striped table-hover">
         @data.map { row =>
             <tr>
+                <td> <img class="thumb" src="@(routes.Assets.at(row("imgSrc")))" /> </td>
                 <td> 
                     <a href="@row("link")"> @row("title") </a> 
                 </td>
                 <td> @row("description") </td>
-                <td> <img class="thumb" src="@(routes.Assets.at(row("imgSrc")))" /> </td>
             </tr>
         }
     </table>
