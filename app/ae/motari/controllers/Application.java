@@ -98,6 +98,8 @@ public class Application extends BaseController {
 
 	public static Result advertisementDetails(Long id){
 		Advertisement adv = Advertisement.findById(id);
+        adv.countViews++;
+        adv.save();
 		return ok(advertisement.render("", adv));
 	}
 	

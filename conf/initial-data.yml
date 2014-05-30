@@ -6,7 +6,7 @@ rooms:
     - !!ae.motari.models.ShowRoom
         name:      Cheap Car Room
         location:       Musafah
-        logo:   logo.jpg
+        logo:   logo.gif
         phone:   0990099
         email:   e@ma.il
         description:   desc
@@ -14,7 +14,7 @@ rooms:
     - !!ae.motari.models.ShowRoom
         name:      Luxury Room
         location:       Madinat Zayed
-        logo:   logo.jpg
+        logo:   logo.gif
         phone:   7582736
         email:   e@ma.il
         description:   We sell you luxury
@@ -22,7 +22,7 @@ rooms:
     - !!ae.motari.models.ShowRoom
         name:      Power auto
         location:       Musafah
-        logo:   logo.jpg
+        logo:   logo.gif
         phone:   442211
         email:   e@ma.il
         description:   Speed first
@@ -30,7 +30,7 @@ rooms:
     - !!ae.motari.models.ShowRoom
         name:      Classica
         location:       Jumira
-        logo:   logo.jpg
+        logo:   logo.gif
         phone:   889364
         email:   e@ma.il
         description:   Good Ol' Days
@@ -38,62 +38,62 @@ rooms:
 ads:
 
     - !!ae.motari.models.Advertisement
-        title:      Nice Car
-        description:      Really Nice Car
-        thumbnail:       thumb1.jpg
+        title:      White FJ
+        description:      Really good condition, Agent check.
+        thumbnail:       thumb.jpg
         images:   img1.jpg,img2.jpg,img3.jpg
         owner:   !!ae.motari.models.ShowRoom
                     id: 1
-        price:   5
+        price:   50000
         countViews:   19
-        manufacturer:   Toyo
-        model:   Super
+        manufacturer:   Toyota
+        model:   FJ
         yearMade:   2009
         carType:   !!ae.motari.models.CarType
                     id: 1
     
     - !!ae.motari.models.Advertisement
-        title:      Suuuuupeeeer
-        description:      Title says all
-        thumbnail:       thumb1.jpg
+        title:      1996 Comaro
+        description:     Classic Comaro, Black color, US Import
+        thumbnail:       thumb.jpg
         images:   img1.jpg,img2.jpg,img3.jpg
         owner:   !!ae.motari.models.ShowRoom
                     id: 3
-        price:   800000
+        price:   30000
         countViews:   19
-        manufacturer:   Duuuupeeeer
-        model:   Super
-        yearMade:   2009
+        manufacturer:   Chevrolet
+        model:   S
+        yearMade:   1996
         carType:   !!ae.motari.models.CarType
                     id: 1
     
     - !!ae.motari.models.Advertisement
-        title:      Comfy And Reliable
-        description:      Soooo good that you want to sleep in it
-        thumbnail:       thumb1.jpg
+        title:      Dark Blue Ford Focus
+        description:      Good condition
+        thumbnail:       thumb.jpg
         images:   img1.jpg,img2.jpg,img3.jpg
         owner:   !!ae.motari.models.ShowRoom
                     id: 2
-        price:   5
+        price:   35000
         countViews:   19
-        manufacturer:   Higher-Kinded Car
-        model:   Unknown
+        manufacturer:   Ford
+        model:   Focus
         yearMade:   2001
         carType:   !!ae.motari.models.CarType
                     id: 1
     
     - !!ae.motari.models.Advertisement
-        title:      CC
-        description:     Just CC
-        thumbnail:       thumb1.jpg
+        title:      Mercedes CLS 200
+        description:     Only 20000 km
+        thumbnail:       thumb.jpg
         images:   img1.jpg,img2.jpg,img3.jpg
         owner:   !!ae.motari.models.ShowRoom
                     id: 4
-        price:   5
+        price:   200000
         countViews:   19
-        manufacturer:   Toyo
-        model:   Super
-        yearMade:   2009
+        manufacturer:   Mercedes
+        model:   CLS
+        yearMade:   2013
         carType:   !!ae.motari.models.CarType
                     id: 1
     
@@ -101,3 +101,12 @@ types:
 
     - !!ae.motari.models.CarType
         name:   Saloon
+
+    - !!ae.motari.models.CarType
+        name:   Van
+
+    - !!ae.motari.models.CarType
+        name:   Truck
+
+    - !!ae.motari.models.CarType
+        name:   Bike
