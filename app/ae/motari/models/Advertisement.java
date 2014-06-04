@@ -108,4 +108,7 @@ public class Advertisement extends BaseEntityAudit {
 			.findList();
 	}
 
+    public static List<Advertisement> getRecentTen(){
+        return find.orderBy("id desc").findPagingList(10).setFetchAhead(false).getPage(1).getList();
+    }
 }

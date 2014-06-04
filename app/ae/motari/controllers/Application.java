@@ -115,6 +115,22 @@ public class Application extends BaseController {
 		return ok(searchAdvertisement.render("",Advertisement.findWhereTitleLike(query)));
 	}
 
+    public static Result getRecentTenAdvertisements(){
+        List<Map<String,String>> data = new ArrayList<Map<String,String>>();
+
+        List<Advertisement> advs = Advertisement.getRecentTen();
+        for(Advertisement adv : advs){
+            Map<String, String> m = new HashMap<>();
+            m.put("title", adv.title);
+            m.put("description", adv.description);
+            m.put("imgSrc", "images/advertisements/"+adv.id+"/"+adv.thumbnail);
+            m.put("link", "/advertisement/"+adv.id);
+            data.add(m);
+        }
+
+        return ok(gallery.render("", data));
+    }
+
 	public static Result gallery(String type, String view){
 		List<Map<String,String>> data = new ArrayList<Map<String,String>>();
 		
