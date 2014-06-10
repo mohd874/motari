@@ -35,8 +35,9 @@ public class ApplicationTest {
 	@Before
 	public void setup(){
 		Map<String, String> settings = new HashMap<String, String>();
-		settings.put("db.default.url", "jdbc:h2:tcp://localhost/D:/workspace/motari/data/test-db");
-		settings.put("db.default.jndiName", "Default");
+		//settings.put("db.default.url", "jdbc:h2:tcp://localhost/D:/workspace/motari/data/test-db");
+        settings.put("db.default.url", "jdbc:h2:mem:play");
+		settings.put("db.default.jndiName", "Default"); 
 		app = Helpers.fakeApplication(settings);
 	}
 	// @Test
@@ -57,11 +58,30 @@ public class ApplicationTest {
 	public void searchShowRoomTest() {
 		running(app, new Runnable() {
 			public void run() {
-				String searchTerm = "car";
+				String searchTerm = "c";
 				List<ShowRoom> result = ShowRoom.findWhereNameLike(searchTerm);
 				assertThat(result.size()).isGreaterThan(0);
 			}
 		});
 	}
+    
+    @Test
+    public void getRecentAdvertisements(){
+        running(app, new Runnable(){
+            public void run() {
+                List<Advertisement> result = Advertisement.getRecentTen();
+                assertThat(result.size()).isGreaterThan(0);
+            }
+        });
+    }
 
+    @Test
+    public void getRecentShowRoom(){
+        running(app, new Runnable(){
+            public void run() {
+                List<ShowRoom> result = ShowRoom.getRecentTen();
+                assertThat(result.size()).isGreaterThan(0);
+            }
+        });
+    }
 }

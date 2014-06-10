@@ -109,6 +109,6 @@ public class Advertisement extends BaseEntityAudit {
 	}
 
     public static List<Advertisement> getRecentTen(){
-        return find.orderBy("id desc").findPagingList(10).setFetchAhead(false).getPage(1).getList();
+        return find.orderBy("id desc").findPagingList(10).setFetchAhead(false).getPage(0).getList();
     }
 }

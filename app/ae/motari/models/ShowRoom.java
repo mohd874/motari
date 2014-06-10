@@ -49,4 +49,8 @@ public class ShowRoom extends BaseEntityAudit {
 			.ilike("name", "%"+name+"%")
 			.findList();
 	}
+
+    public static List<ShowRoom> getRecentTen(){
+        return find.orderBy("id desc").findPagingList(10).setFetchAhead(false).getPage(0).getList();
+    }
 }

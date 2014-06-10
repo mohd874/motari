@@ -117,7 +117,7 @@ public class Application extends BaseController {
 
     public static Result getRecentTenAdvertisements(){
         List<Map<String,String>> data = new ArrayList<Map<String,String>>();
-
+        
         List<Advertisement> advs = Advertisement.getRecentTen();
         for(Advertisement adv : advs){
             Map<String, String> m = new HashMap<>();
@@ -128,9 +128,24 @@ public class Application extends BaseController {
             data.add(m);
         }
 
-        return ok(gallery.render("", data));
+        return ok(gallery.render("mini", data));
     }
 
+    public static Result getRecentTenShowRooms(){
+        List<Map<String,String>> data = new ArrayList<Map<String,String>>();
+        
+        List<ShowRoom> rooms = ShowRoom.getRecentTen();
+        for(ShowRoom r : rooms){
+            Map<String, String> m = new HashMap<>();
+            m.put("title", r.name);
+            m.put("description", r.description);
+            m.put("imgSrc", "images/cars/"+r.id+"/"+r.logo);
+            m.put("link", "/showRoom/"+r.id);
+            data.add(m);
+        }
+
+        return ok(gallery.render("mini", data));
+    }
 	public static Result gallery(String type, String view){
 		List<Map<String,String>> data = new ArrayList<Map<String,String>>();
 		

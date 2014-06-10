@@ -33,7 +33,7 @@
 			});
 
 			function getTagsFor(type){
-				var reqUrl = "/advertisement/recent";
+				var reqUrl = "/"+type+"/recent";
 				var selector = ".gallery_"+type
 				$.ajax({
 					type : 'GET',
@@ -61,11 +61,11 @@
 	<div class="row col-lg-12">
 		<h2 class="col-lg-12">Recent Advertisements</h2>
 		
-		<div class="gallery gallery_adv col-lg-12">
+		<div class="gallery gallery_advertisement col-lg-12">
 			
 		</div>
 		<script>
-			getTagsFor("adv");
+			getTagsFor("advertisement");
 		</script>
 		
         <div class="col-lg-12">
@@ -75,11 +75,11 @@
 	<div class="row col-lg-12">
 		<h2 class="col-lg-12">New Show Rooms</h2>
 		
-		<div class="gallery gallery_room col-lg-12">
+		<div class="gallery gallery_showRoom col-lg-12">
 			
 		</div>
 		<script>
-			getTagsFor("room");
+			getTagsFor("showRoom");
 		</script>
 
         <div class="col-lg-12">

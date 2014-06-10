@@ -8,6 +8,7 @@ GET     /                           ae.motari.controllers.Application.index()
                                     
 GET   	/showRoom/new             	ae.motari.controllers.Application.newShowRoom()
 POST   	/showRoom/saveNew          	ae.motari.controllers.Application.saveShowRoom()
+GET		/showRoom/recent    		ae.motari.controllers.Application.getRecentTenShowRooms() 
 GET		/showRoom/:id				ae.motari.controllers.Application.showRoomDetails(id: Long)
                                     
 GET   	/advertisement/new         	ae.motari.controllers.Application.newAdvertisement()
