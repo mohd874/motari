@@ -120,7 +120,7 @@ public class Application extends BaseController {
         
         List<Advertisement> advs = Advertisement.getRecentTen();
         for(Advertisement adv : advs){
-            Map<String, String> m = new HashMap<>();
+            Map<String, String> m = new HashMap<String, String>();
             m.put("title", adv.title);
             m.put("description", adv.description);
             m.put("imgSrc", "images/advertisements/"+adv.id+"/"+adv.thumbnail);
@@ -136,7 +136,7 @@ public class Application extends BaseController {
         
         List<ShowRoom> rooms = ShowRoom.getRecentTen();
         for(ShowRoom r : rooms){
-            Map<String, String> m = new HashMap<>();
+            Map<String, String> m = new HashMap<String, String>();
             m.put("title", r.name);
             m.put("description", r.description);
             m.put("imgSrc", "images/cars/"+r.id+"/"+r.logo);
@@ -155,7 +155,7 @@ public class Application extends BaseController {
 			for(Advertisement adv : advs){
 //				Tag t = AdvertisementTagCreator.generateTagFor(adv);
 //				tags.add(t);
-				Map<String, String> m = new HashMap<>();
+				Map<String, String> m = new HashMap<String, String>();
 				m.put("title", adv.title);
 				m.put("description", adv.description);
 				m.put("imgSrc", "images/advertisements/"+adv.id+"/"+adv.thumbnail);
@@ -166,7 +166,7 @@ public class Application extends BaseController {
 			List<ShowRoom> rooms = ShowRoom.find.all();
 			Logger.info("rooms: " + rooms.size());
 			for(ShowRoom r : rooms){
-				Map<String, String> m = new HashMap<>();
+				Map<String, String> m = new HashMap<String, String>();
 				m.put("title", r.name);
 				m.put("description", r.description);
 				m.put("imgSrc", "images/cars/"+r.id+"/"+r.logo);
